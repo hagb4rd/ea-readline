@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var es = require('event-stream')
 var ini = require('ini');
 var cp = require("child_process");

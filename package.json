@@ -1,10 +1,10 @@
 {
   "name": "ea-readline",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "map local directories to http addresses, and bind html to the cli to open local urls mapped to http server in browser via node",
   "main": "src/cli-readline.js",
   "bin": {
-    "readline": "src/cli-readline.js"
+    "readline": "./src/cli-readline.js"
   },
   "engines": {
     "node": ">= v0.10.30"
