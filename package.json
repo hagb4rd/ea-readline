@@ -1,0 +1,36 @@
+{
+  "name": "ea-readline",
+  "version": "1.0.8",
+  "description": "map local directories to http addresses, and bind html to the cli to open local urls mapped to http server in browser via node",
+  "main": "src/cli-readline.js",
+  "bin": {
+    "readline": "src/cli-readline.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hagb4rd/ea-readline.git"
+  },
+  "keywords": [
+    "cli",
+    "csv",
+    "json",
+    "parse",
+    "stringify",
+    "stream"
+  ],
+  "author": "hagb4rd@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hagb4rd/ea-readline/issues"
+  },
+  "homepage": "https://github.com/hagb4rd/ea-readline#readme",
+  "dependencies": {
+    "event-stream": "^3.3.4",
+    "ini": "^1.3.5",
+    "minimist": "^1.2.0",
+    "open": "0.0.5"
+  }
+}

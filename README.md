@@ -1,0 +1,1 @@
+# ea-open-in-browser 
