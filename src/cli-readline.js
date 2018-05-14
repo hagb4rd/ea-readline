@@ -14,13 +14,16 @@ var {fread,fwrite,csv,remap,mapping,loadini,parsecsv} = require('./remap');
 
 
 
-var readline = function(inputStream,fnMap=function(data,callback) { callback(data) }) {
+var readline = function(inputStream,fnMap=function(data,callback) { callback(null,data) }) {
   inputStream
     .pipe(es.split())
     .pipe(es.map(fnMap))
+    .pipe(process.stdout)
+    /*
     .pipe(es.writeArray(function(err, array) {
       console.log(JSON.stringify(array));
     }))
+    /* */
 }
 
 var file = "D:\\Dokumente\\iv\\annika.txt";
@@ -40,6 +43,8 @@ if(!stdin) {
     var fn=parsecsv();
   } else if (argv.csv) {
     var fn=parsecsv(argv.csv.split(","))
+  } else if (argv.remap) {
+    var fn=function(data,callback) { var data=(data?remap(data)+"\r\n":""); callback(null,data) }
   } else {
     var fn=function(data,callback) { callback(null,data) }
   }

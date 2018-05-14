@@ -1,16 +1,8 @@
+#!/usr/bin/env node
 var es = require('event-stream')
-var ini = require('ini');
-var cp = require("child_process");
-var fs = require("fs");
-var path = require("path");
 
-var {fread,fwrite,csv,remap,mapping,loadini,parsecsv} = require('./remap');
-
-
-
-var stdin=process.openStdin();
-
-process.stdin
-  .pipe(es.map(parsecsv))
-  .pipe(es.stringify())
-  .pipe(process.stdout)
+process.openStdin()
+  .pipe(es.split())
+  .pipe(es.writeArray(function(err, array) {
+      console.log(JSON.stringify(array.filter(x=>!!x)));
+  }))
