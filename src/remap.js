@@ -25,7 +25,7 @@ var csv=mapper.csv=(file, row=/\r\n/, col=/\t+/)=>fread(path.resolve(file)).spli
 var fread=mapper.fread=(file)=>fs.readFileSync(path.resolve(file), {encoding:"utf8"}); 
 var fwrite=mapper.fwrite=(file,data)=>fs.readWriteSync(path.resolve(file), (typeof(data)=="string"?data:JSON.stringify(data)), {encoding:"utf8"}); 
 var loadini=mapper.loadini=(file=path.resolve(__dirname,"../remap.ini"))=>require('ini').parse(require('fs').readFileSync(file,{encoding:'utf8'}));
-var ls=mapper.ls=(glob,basedir)=>require('child_process').execSync(`dir ${require('path').resolve(basedir||'./',glob||'*.*')}, /s/b`).toString().split("\r\n")
+var ls=mapper.ls=(glob,basedir)=>require('child_process').execSync(`dir ${require('path').resolve(basedir|| process.cwd() ,glob||'*.*')}, /s/b`).toString().split("\r\n")
 
 
 var regexp={
