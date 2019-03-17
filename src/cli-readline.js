@@ -38,24 +38,33 @@ try {
     //var fn=function(data,callback) { var data=(data?remap(mapping,)+"\r\n":""); callback(null,data) }
     var fn=remap(mapping,encodeRoute)
   } else {
-    throw Error('Missing Parameter');
+   fn=s=>'\"' + s + '\" '; 
   }
+  
 
   //read stream
-  if(fileName=argv._[0]) {
+  if(fileName=argv.file) {
     var stream = fs.createReadStream(path.resolve(fileName),{encoding:"utf8"})
   } else {
     var stream = process.openStdin()
   }
   
+  if(argv._) {
+    try {
+      fn=eval(argv._.join(' '));
+    } catch(e) {
+      
+    }
+  }
+  
   
   stream
   .pipe(es.split())
-  .pipe(es.map(fn))
+  .pipe(es.mapSync(fn))
   .pipe(process.stdout)
 
 } catch(e) {
 
   console.log(e.message);
-  console.log(`USAGE: dir D:\Dokumente\iv\*.* /s/b | readline --remap="D:\Dokumente=http://iis" | tojson`);
+  console.log(`USAGE: dir D:\Dokumenteiv\*.* /s/b | readline --remap="D:\\Dokumente=http://localhost" | tojson`);
 }
